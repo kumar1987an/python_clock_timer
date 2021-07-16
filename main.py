@@ -1,39 +1,26 @@
-from tkinter import Tk
-from tkinter import Button, Entry, LabelFrame, Label, font
+import PySimpleGUI as sg
+
+sg.theme('GreenTan')
+
+layout = [
+    [sg.Text('Welcome to PySimpleGui')],
+    [sg.Text("Enter the name"), sg.InputText()],
+    [sg.Text("Enter your age"), sg.InputText()],
+    [sg.Button("Submit"), sg.Button("Cancel")]
+    ]
+
+window = sg.Window('Python Timer', layout, margins=(50, 50))
+
+event, values = window.read()
+
+if event == sg.WIN_CLOSED or event == "Submit":
+    window.close()
+
+Name = values[0]
+Age = values[1]
+
+sg.popup(f"Age of {Name} is {Age}", title="Data display", auto_close=True, auto_close_duration=3)
 
 
-root = Tk()
-root.title("Python Timer App")
-general_font = font.Font(weight="bold", size="10", family="Calibri")
-labelframe_font = font.Font(size="12", family="Calibri")
-colon_font = font.Font(weight="bold", size="16")
-root.geometry("380x200")
 
-labelframe = LabelFrame(text="Set Me", padx=10, pady=10)
-labelframe["font"] = labelframe_font
-labelframe.configure(bg="ivory3")
-labelframe.pack()
-
-hours = Entry(labelframe, width=2, borderwidth=3)
-hours.grid(row=0, column=0, padx=20, pady=20, ipadx=20, ipady=20)
-
-colon_1 = Label(labelframe, text=":")
-colon_1.grid(row=0, column=1)
-colon_1["font"] = colon_font
-colon_1.configure(bg="ivory3")
-
-mins = Entry(labelframe, width=2, borderwidth=3)
-mins.grid(row=0, column=2, padx=20, pady=20, ipadx=20, ipady=20)
-
-colon_2 = Label(labelframe, text=":")
-colon_2.grid(row=0, column=3)
-colon_2["font"] = colon_font
-colon_2.configure(bg="ivory3")
-
-seconds = Entry(labelframe, width=2, borderwidth=3)
-seconds.grid(row=0, column=4, padx=20, pady=20, ipadx=20, ipady=20)
-
-button = Button(labelframe, text="Start", bg="green", fg="white")
-button["font"] = general_font
-button.grid(row=1, columnspan=6)
-root.mainloop()
+# ['Black', 'BlueMono', 'BluePurple', 'BrightColors', 'BrownBlue', 'Dark', 'Dark2', 'DarkAmber', 'DarkBlack', 'DarkBlack1', 'DarkBlue', 'DarkBlue1', 'DarkBlue10', 'DarkBlue11', 'DarkBlue12', 'DarkBlue13', 'DarkBlue14', 'DarkBlue15', 'DarkBlue16', 'DarkBlue17', 'DarkBlue2', 'DarkBlue3', 'DarkBlue4', 'DarkBlue5', 'DarkBlue6', 'DarkBlue7', 'DarkBlue8', 'DarkBlue9', 'DarkBrown', 'DarkBrown1', 'DarkBrown2', 'DarkBrown3', 'DarkBrown4', 'DarkBrown5', 'DarkBrown6', 'DarkBrown7', 'DarkGreen', 'DarkGreen1', 'DarkGreen2', 'DarkGreen3', 'DarkGreen4', 'DarkGreen5', 'DarkGreen6', 'DarkGreen7', 'DarkGrey', 'DarkGrey1', 'DarkGrey10', 'DarkGrey11', 'DarkGrey12', 'DarkGrey13', 'DarkGrey14', 'DarkGrey2', 'DarkGrey3', 'DarkGrey4', 'DarkGrey5', 'DarkGrey6', 'DarkGrey7', 'DarkGrey8', 'DarkGrey9', 'DarkPurple', 'DarkPurple1', 'DarkPurple2', 'DarkPurple3', 'DarkPurple4', 'DarkPurple5', 'DarkPurple6', 'DarkPurple7', 'DarkRed', 'DarkRed1', 'DarkRed2', 'DarkTanBlue', 'DarkTeal', 'DarkTeal1', 'DarkTeal10', 'DarkTeal11', 'DarkTeal12', 'DarkTeal2', 'DarkTeal3', 'DarkTeal4', 'DarkTeal5', 'DarkTeal6', 'DarkTeal7', 'DarkTeal8', 'DarkTeal9', 'Default', 'Default1', 'DefaultNoMoreNagging', 'GrayGrayGray', 'Green', 'GreenMono', 'GreenTan', 'HotDogStand', 'Kayak', 'LightBlue', 'LightBlue1', 'LightBlue2', 'LightBlue3', 'LightBlue4', 'LightBlue5', 'LightBlue6', 'LightBlue7', 'LightBrown', 'LightBrown1', 'LightBrown10', 'LightBrown11', 'LightBrown12', 'LightBrown13', 'LightBrown2', 'LightBrown3', 'LightBrown4', 'LightBrown5', 'LightBrown6', 'LightBrown7', 'LightBrown8', 'LightBrown9', 'LightGray1', 'LightGreen', 'LightGreen1', 'LightGreen10', 'LightGreen2', 'LightGreen3', 'LightGreen4', 'LightGreen5', 'LightGreen6', 'LightGreen7', 'LightGreen8', 'LightGreen9', 'LightGrey', 'LightGrey1', 'LightGrey2', 'LightGrey3', 'LightGrey4', 'LightGrey5', 'LightGrey6', 'LightPurple', 'LightTeal', 'LightYellow', 'Material1', 'Material2', 'NeutralBlue', 'Purple', 'Python', 'Reddit', 'Reds', 'SandyBeach', 'SystemDefault', 'SystemDefault1', 'SystemDefaultForReal', 'Tan', 'TanBlue', 'TealMono', 'Topanga']
