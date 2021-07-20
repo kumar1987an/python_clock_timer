@@ -1,26 +1,34 @@
 import PySimpleGUI as sg
 
-sg.theme('GreenTan')
+sg.theme("BluePurple")
 
-layout = [
-    [sg.Text('Welcome to PySimpleGui')],
-    [sg.Text("Enter the name"), sg.InputText()],
-    [sg.Text("Enter your age"), sg.InputText()],
-    [sg.Button("Submit"), sg.Button("Cancel")]
-    ]
+font1 = ("Arial, 60")
+font2 = ("Hack, 60")
+font3 = ("Hack, 10")
+layout = [[sg.Text('Welcome to Python Timer', font=font3, text_color="black", justification='center')],
 
-window = sg.Window('Python Timer', layout, margins=(50, 50))
+          [sg.InputText(size=(2, 2), font=font1, key="-HOURS-", pad=(32, 32)), sg.Text(":", font=font2, text_color="black"),
+          sg.InputText(size=(2, 2), font=font1, key="-MINUTES-", pad=(32, 32)), sg.Text(":", font=font2, text_color="black"),
+          sg.InputText(size=(2, 2), font=font1, key="-SECONDS-", pad=(32, 32))],
 
-event, values = window.read()
+          [sg.Text("", key='-OUTPUT-')],
+        
+          [sg.Button("Start", size=(5, 4), border_width=3, pad=(32, 20)), 
+          sg.Button("Stop", size=(5, 4), border_width=3, pad=(32, 20)), 
+          sg.Button("Reset", size=(5, 4), border_width=3, pad=(35, 20)), 
+          sg.Button("Exit", size=(5, 4), border_width=3, pad=(32, 20))]
+]
 
-if event == sg.WIN_CLOSED or event == "Submit":
-    window.close()
+window = sg.Window('Python Timer', layout)
 
-Name = values[0]
-Age = values[1]
+while True:
+    event, values = window.read()
+    if event == "Start":
+        hours = values['-HOURS-']
+        minutes = values['-MINUTES-']
+        seconds = values['-SECONDS-']
+        # window['-OUTPUT-'].update(f"{hours}:{minutes}:{seconds}")
+        print(int(hours)+1, int(minutes)+60, int(seconds)+60)
 
-sg.popup(f"Age of {Name} is {Age}", title="Data display", auto_close=True, auto_close_duration=3)
-
-
-
-# ['Black', 'BlueMono', 'BluePurple', 'BrightColors', 'BrownBlue', 'Dark', 'Dark2', 'DarkAmber', 'DarkBlack', 'DarkBlack1', 'DarkBlue', 'DarkBlue1', 'DarkBlue10', 'DarkBlue11', 'DarkBlue12', 'DarkBlue13', 'DarkBlue14', 'DarkBlue15', 'DarkBlue16', 'DarkBlue17', 'DarkBlue2', 'DarkBlue3', 'DarkBlue4', 'DarkBlue5', 'DarkBlue6', 'DarkBlue7', 'DarkBlue8', 'DarkBlue9', 'DarkBrown', 'DarkBrown1', 'DarkBrown2', 'DarkBrown3', 'DarkBrown4', 'DarkBrown5', 'DarkBrown6', 'DarkBrown7', 'DarkGreen', 'DarkGreen1', 'DarkGreen2', 'DarkGreen3', 'DarkGreen4', 'DarkGreen5', 'DarkGreen6', 'DarkGreen7', 'DarkGrey', 'DarkGrey1', 'DarkGrey10', 'DarkGrey11', 'DarkGrey12', 'DarkGrey13', 'DarkGrey14', 'DarkGrey2', 'DarkGrey3', 'DarkGrey4', 'DarkGrey5', 'DarkGrey6', 'DarkGrey7', 'DarkGrey8', 'DarkGrey9', 'DarkPurple', 'DarkPurple1', 'DarkPurple2', 'DarkPurple3', 'DarkPurple4', 'DarkPurple5', 'DarkPurple6', 'DarkPurple7', 'DarkRed', 'DarkRed1', 'DarkRed2', 'DarkTanBlue', 'DarkTeal', 'DarkTeal1', 'DarkTeal10', 'DarkTeal11', 'DarkTeal12', 'DarkTeal2', 'DarkTeal3', 'DarkTeal4', 'DarkTeal5', 'DarkTeal6', 'DarkTeal7', 'DarkTeal8', 'DarkTeal9', 'Default', 'Default1', 'DefaultNoMoreNagging', 'GrayGrayGray', 'Green', 'GreenMono', 'GreenTan', 'HotDogStand', 'Kayak', 'LightBlue', 'LightBlue1', 'LightBlue2', 'LightBlue3', 'LightBlue4', 'LightBlue5', 'LightBlue6', 'LightBlue7', 'LightBrown', 'LightBrown1', 'LightBrown10', 'LightBrown11', 'LightBrown12', 'LightBrown13', 'LightBrown2', 'LightBrown3', 'LightBrown4', 'LightBrown5', 'LightBrown6', 'LightBrown7', 'LightBrown8', 'LightBrown9', 'LightGray1', 'LightGreen', 'LightGreen1', 'LightGreen10', 'LightGreen2', 'LightGreen3', 'LightGreen4', 'LightGreen5', 'LightGreen6', 'LightGreen7', 'LightGreen8', 'LightGreen9', 'LightGrey', 'LightGrey1', 'LightGrey2', 'LightGrey3', 'LightGrey4', 'LightGrey5', 'LightGrey6', 'LightPurple', 'LightTeal', 'LightYellow', 'Material1', 'Material2', 'NeutralBlue', 'Purple', 'Python', 'Reddit', 'Reds', 'SandyBeach', 'SystemDefault', 'SystemDefault1', 'SystemDefaultForReal', 'Tan', 'TanBlue', 'TealMono', 'Topanga']
+    if event == sg.WIN_CLOSED or event == "Exit":
+        window.close()
